@@ -38,7 +38,8 @@ body {
 }
 
 .left-section img {
-  max-width: 79%; /* Ensure image fits within its container */
+  width: 100%;
+  max-width: 100%; /* Ensure image fits within its container */
   margin-left: 60px;
   margin-top: 20px;
   height: 550px;
@@ -47,7 +48,7 @@ body {
 
 .right-section {
   flex: 1;
-  padding-left: 10px;
+  padding-left: 90px;
   padding-top: 20px;
   text-align: center;
   width: 50%;
@@ -68,7 +69,7 @@ body {
 }
 
 .right-section p {
-  font-size: 25px;
+  font-size: 22px;
   margin-top: 0;
   padding-bottom: 20px;
 }
@@ -213,9 +214,11 @@ body {
 }
 
 .image-container img {
-  max-width: 500px; /* Set the maximum width of the image */
-  height: auto;
-  transition: transform 0.3s ease; /* Add transition for smooth effect */
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  transform: scale(1.02);   /* Try 1.05–1.15 */
+  transition: transform 0.3s ease;
 }
 
 .image-container:hover img {

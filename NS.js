@@ -23,32 +23,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
 // Handle form submission
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('.contact-form form');
+document.addEventListener("DOMContentLoaded", () => {
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission behavior
+    const form = document.getElementById("contact-form");
 
-        // Get form data
-        const formData = new FormData(form);
+    form.addEventListener("submit", async (e) => {
 
-        // Send form data asynchronously using Fetch API
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            // Handle successful response
-            console.log('Message sent successfully!');
-            // Reload the page after form submission
-            window.location.reload();
-        })
-        .catch(error => {
-            // Handle error
-            console.error('Error sending message:', error);
-            // You can add code here to show an error message or perform any other error handling
-        });
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        };
+
+        try {
+
+            const response = await fetch("http://localhost:5000/send-message", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(data)
+
+            });
+
+            const result = await response.json();
+
+            alert(result.message);
+
+            form.reset();
+
+        } catch (err) {
+
+            console.log(err);
+
+            alert("Something went wrong.");
+
+        }
+
     });
+
 });
